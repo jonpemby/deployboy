@@ -18,7 +18,7 @@ trait HasProfile
      */
     public function getDigitalOceanTokenAttribute()
     {
-        return $this->tokens()->digitalOcean()->first();
+        return $this->tokens()->digitalOcean()->firstOrFail();
     }
 
     /**
