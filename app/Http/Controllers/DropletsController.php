@@ -14,15 +14,13 @@ class DropletsController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
+        $manager = resolve(Manager::class, ['token' => auth()->user()->digitalOceanToken]);
 
-        $manager = resolve(Manager::class);
+        $response = $manager->listDroplets()->wait();
 
-        $manager->setUser($user);
+        $json = json_decode($response->getBody()->getContents());
 
-        $response = $manager->listDroplets();
-
-        return $response->droplets;
+        return $json->droplets;
     }
 
     /**
