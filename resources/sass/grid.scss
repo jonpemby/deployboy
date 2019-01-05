@@ -1,0 +1,53 @@
+.site-content {
+  @apply .bg-brand-lightest .min-h-screen;
+  display: grid;
+  grid-template:
+    "header" auto
+    "before" auto
+    "main" 1fr
+    "after" auto
+    "footer" 50px;
+}
+
+.site-header {
+  grid-area: header;
+}
+
+.site-footer {
+  grid-area: footer;
+}
+
+.main {
+  grid-area: main;
+  display: grid;
+
+  grid-template: "article" auto;
+
+  &.with-sidebar {
+    grid-template:
+      "article" auto
+      "sidebar" auto;
+  }
+}
+
+@screen md {
+  .main.with-sidebar {
+    grid-template: "article sidebar" auto;
+  }
+}
+
+.before-main {
+  grid-area: before;
+}
+
+.after-main {
+  grid-area: after;
+}
+
+.article {
+  grid-area: article;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
