@@ -2,6 +2,15 @@
 
 namespace App\DigitalOcean;
 
+/**
+ * TODO:
+ * 1) Needs to be renamed to be more semantic:
+ *    - a user manages their profile through a DigitalOcean\ProfileManager
+ *    - a user can manage **some** of their assets through this application (but not all)
+ * 2) Fix the resolution of a profile manager - the service container should
+ *    be able to resolve a `ProfileManager` for this user
+ * 3) `digitalOceanProfile` breaks the 'two words or less' rule of naming
+ */
 trait HasProfile
 {
     /**
