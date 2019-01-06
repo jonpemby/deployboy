@@ -28,11 +28,11 @@ abstract class Manager
      * @param \App\Token  $token
      * @param \GuzzleHttp\Client  $client
      */
-    public function __construct(Token $token, Client $client)
+    public function __construct(Client $client, $token = null)
     {
-        $this->token = $token;
-
         $this->client = $client;
+
+        $this->token = $token;
     }
 
     /**
@@ -46,15 +46,15 @@ abstract class Manager
     }
 
     /**
-     * Get a manager for a specific user.
+     * Set the authentication token used for requests.
      *
-     * @param \App\User  $user
-     * @return \App\DigitalOcean\Manager
+     * @param \App\Token  $token
+     * @return $this
      */
-    public static function for(User $user)
+    public function setToken(Token $token)
     {
-        return new static($user->digitalOceanToken, new Client([
-            'base_uri' => 'https://api.digitalocean.com/v2/',
-        ]));
+        $this->token = $token;
+
+        return $this;
     }
 }

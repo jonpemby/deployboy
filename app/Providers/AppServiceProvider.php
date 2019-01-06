@@ -13,7 +13,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->when(\App\DigitalOcean\ProfileManager::class)
+             ->needs(\GuzzleHttp\Client::class)
+             ->give(function () {
+                 return new \GuzzleHttp\Client(['base_uri' => 'https://api.digitalocean.com/v2/']);
+             });
     }
 
     /**

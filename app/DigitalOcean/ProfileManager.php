@@ -5,22 +5,24 @@ namespace App\DigitalOcean;
 class ProfileManager extends Manager
 {
     /**
-     * Provides access to the user's droplets manager.
+     * Dynamically instantiate a manager matching a method call.
+     * For instance, if the profile manager receives a call
+     * to 'droplets' it returns a new 'DropletsManager'.
      *
-     * @return \App\DigitalOcean\DropletsManager
+     * @param string  $method
+     * @param array  $args
+     * @return mixed
      */
-    public function droplets()
+    public function __call($method, $args)
     {
-        return new DropletsManager($this->token, $this->client);
-    }
+        if (method_exists($this, $method)) {
+            return $this->{$method}(...$args);
+        }
 
-    /**
-     * Provides access to the user's SSH keys manager.
-     *
-     * @return \App\DigitalOcean\SshKeysManager
-     */
-    public function ssh()
-    {
-        return new SshKeysManager($this->token, $this->client);
+        $class_name = "\\App\\DigitalOcean\\" . studly_case($method) . 'Manager';
+
+        if (class_exists($class_name)) {
+            return new $class_name($this->token, $this->client, ...$args);
+        }
     }
 }
