@@ -4,12 +4,9 @@ namespace App\DigitalOcean;
 
 /**
  * TODO:
- * 1) Needs to be renamed to be more semantic:
- *    - a user manages their profile through a DigitalOcean\ProfileManager
- *    - a user can manage **some** of their assets through this application (but not all)
- * 2) `digitalOceanProfile` breaks the 'two words or less' rule of naming
+ * 1) `digitalOceanProfile` breaks the 'two words or less' rule of naming
  */
-trait HasProfile
+trait ManagesDigitalOcean
 {
     /**
      * Digital Ocean profile manager for a user's account.

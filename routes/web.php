@@ -15,6 +15,16 @@ Route::get('/', function () {
     return view('welcome', ['omit_nav' => true]);
 });
 
+Route::resource('droplets', 'DropletsController');
+
+Route::get('test', function () {
+    auth()->login(\App\User::find(1));
+
+    //dd(auth()->user());
+
+    return redirect('/droplets');
+});
+
 /**
  * OAuth Routes
  */

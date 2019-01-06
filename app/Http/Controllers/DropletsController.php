@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DigitalOcean\Manager;
+use App\DigitalOcean\ProfileManager;
 
 class DropletsController extends Controller
 {
@@ -14,9 +14,10 @@ class DropletsController extends Controller
      */
     public function index()
     {
-        $manager = resolve(Manager::class, ['token' => auth()->user()->digitalOceanToken]);
-
-        $response = $manager->listDroplets()->wait();
+        $response = auth()->user()->digitalOceanProfile
+            ->droplets()
+            ->list()
+            ->wait();
 
         $json = json_decode($response->getBody()->getContents());
 

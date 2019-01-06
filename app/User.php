@@ -5,12 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\DigitalOcean\HasProfile as HasDigitalOceanProfile;
-use App\Github\HasProfile as HasGithubProfile;
+use App\DigitalOcean\ManagesDigitalOcean;
+use App\Github\ManagesGithub;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasGithubProfile, HasDigitalOceanProfile;
+    use Notifiable, ManagesGithub, ManagesDigitalOcean;
 
     /**
      * The attributes that are mass assignable.

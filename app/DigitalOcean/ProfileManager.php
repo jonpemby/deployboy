@@ -22,7 +22,7 @@ class ProfileManager extends Manager
         $class_name = "\\App\\DigitalOcean\\" . studly_case($method) . 'Manager';
 
         if (class_exists($class_name)) {
-            return new $class_name($this->token, $this->client, ...$args);
+            return new $class_name($this->client, $this->token, ...$args);
         }
     }
 }

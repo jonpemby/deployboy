@@ -2,7 +2,7 @@
 
 namespace App\Github;
 
-trait HasProfile
+trait ManagesGithub
 {
     /**
      * Profile object with GitHub profile information
