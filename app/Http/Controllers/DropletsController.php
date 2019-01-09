@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DigitalOcean\ProfileManager;
+use Cache;
 
 class DropletsController extends Controller
 {
@@ -14,6 +15,8 @@ class DropletsController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+
         $response = auth()->user()->digitalOceanProfile
             ->droplets()
             ->list()

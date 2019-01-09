@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\DigitalOcean\ManagesDigitalOcean;
+use App\DigitalOcean\Behaviors\ManagesDigitalOcean;
 use App\Github\ManagesGithub;
 
 class User extends Authenticatable

@@ -1,6 +1,8 @@
 <?php
 
-namespace App\DigitalOcean;
+namespace App\DigitalOcean\Behaviors;
+
+use App\DigitalOcean\Contracts\Decorator;
 
 /**
  * TODO:
@@ -32,8 +34,11 @@ trait ManagesDigitalOcean
      */
     public function getDigitalOceanProfileAttribute()
     {
-        if (is_null($this->digitalOcean))
-            $this->digitalOcean = resolve(ProfileManager::class)->setToken($this->digitalOceanToken);
+        if (is_null($this->digitalOcean)) {
+            $profile = resolve(Decorator::class);
+            $profile->setToken($this->digitalOceanToken);
+            $this->digitalOcean = $profile;
+        }
 
         return $this->digitalOcean;
     }
