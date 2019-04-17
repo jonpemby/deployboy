@@ -11,7 +11,7 @@ class Profile
      *
      * @var array
      */
-    protected $data = [];
+    protected $data = new \stdClass;
 
     /**
      * Given the user's data create a new \App\Github\Profile.
